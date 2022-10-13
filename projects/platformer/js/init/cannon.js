@@ -12,9 +12,15 @@
 
     // example:
     createCannon("top", 450, 1000);
-    createCannon("bottom", 450, 500);
-    createCannon("right", 300,600);
-    createCannon("right", 500);
+    createCannon("left", 150, 1000);
+    createCannon("right", 150, 1000);
+    createCannon("left", 350, 1000);
+    createCannon("right", 400, 1000);
+    createCannon("bottom", 450, 1000);
+    createCannon("top", 250, 1000);
+    createCannon("bottom", 250, 1000);
   }
+
+
   cannon.init = init;
 })(window);

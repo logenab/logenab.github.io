@@ -21,10 +21,10 @@
 
     // example:
     createPlatform(400, 500);
-    createPlatform(125, 400, 0.6);
-    createPlatform(120, 100, 0.6);
-    createPlatform(140, 590, 0.7);
-
+    createPlatform(100, 300);
+    createPlatform(100, 600);
+    createPlatform(450, 400);
+    createPlatform(300, 200);
     // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////
   }
