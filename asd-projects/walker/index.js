@@ -99,13 +99,13 @@ function wallCollision(){
     walker.x = 0;
   }
   else if (walker.x > 390){
-    walker.x = 0;
+    walker.x = 390;
   }
   if (walker.y < 0){
     walker.y = 0;
   }
   else if (walker.y > 400){
-    walker.y = 0;
+    walker.y = 395;
   }
   }
   

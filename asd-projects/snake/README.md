@@ -305,6 +305,8 @@ Every game provides some way for the user to have control. In this game, we will
 >
 > ```javascript
 > $("body").on("keydown", handleKeyDown);
+
+
 > ```
 >
 > This makes the `body` HTML element _listen_ for a `keydown` event, and when that event occurs, the `handleKeyDown()` function will be called in response. It is also important to note that this function will _not_ be called as part of the same animation cycle in which the `update()` function is called.
