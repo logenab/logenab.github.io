@@ -153,7 +153,7 @@ function hasHitWall() {
   board, false otherwise.
   HINT: What will the row and column of the snake's head be if this were the case?
   */
-if (snake.head.column < 1 ){
+if (snake.head.column < 1){
 return true
 }
 else if (snake.head.column > 70){
@@ -176,16 +176,20 @@ function hasCollidedWithApple() {
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
+  if (apple.row  === snake.head.row && apple.column === snake.head.column){
+    console.log("touch appple")
+    return true
+  }
+ 
 
   return false;
 }
 
 function handleAppleCollision() {
   // increase the score and update the score DOM element
-  if (hasCollisionWithApple()){
-    handleAppleCollision
-  }
-  score++;
+  if (hasCollidedWithApple()){
+    score++
+    }
   scoreElement.text("Score: " + score);
 
   // Remove existing Apple and create a new one
@@ -207,6 +211,7 @@ function handleAppleCollision() {
   // code to determine the row and column of the snakeSquare to add to the snake
 
   makeSnakeSquare(row, column);
+
 }
 
 function hasCollidedWithSnake() {
