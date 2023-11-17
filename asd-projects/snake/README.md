@@ -129,6 +129,7 @@ Technically, this tag can be added anywhere _above_ the `index.js` file. However
 
 If you open the console you shouldn't see any errors now relating to jQuery (the `$` symbol).
 
+
 # Part 2 - Modeling Data & jQuery
 
 ## TODO 4: Modeling the Snake and Apple with Arrays and Objects
