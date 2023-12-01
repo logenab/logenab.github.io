@@ -55,14 +55,28 @@ function applyFilter(filterFunction){
 
 
 // TODO 5: Create the keepInBounds function
+function keepInBounds(num){
+  return num < 0 ? 0 
+  : num > 255 ? 255 
+  : num > 0 ? num:
+   num < 255 ? num:
+   num;
 
-
+}
+console.log(keepInBounds(-30));
+console.log(keepInBounds(300));
+console.log(keepInBounds(127));
 // TODO 3: Create reddify function
 function reddify(red){
   rgbNumbers[0] = 200;
 }
 
 // TODO 6: Create more filter functions
-
+function decreaseBlue(blue){
+  blue[2] = keepInBounds(blue[2] - 50);
+}
+function increaseGreenByBlue(Reen){
+  
+}
 
 // CHALLENGE code goes below here
