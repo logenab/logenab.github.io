@@ -20,9 +20,9 @@ function resetAndRender() {
 // all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
-applyFilter(reddify)
-  
-
+applyFilterNoBackground(reddify)
+applyFilterNoBackground(decreaseBlue)
+applyFilter(increaseGreenByBlue)
   // do not change the below line of code
   render($("#display"), image);
 }
@@ -40,9 +40,9 @@ function applyFilter(filterFunction){
     //takeing a part of image values 
   var rgbString = image[i][t];
   var rgbNumbers = rgbStringToArray(rgbString);
-  rgbNumbers[0] = 255;
+  // rgbNumbers[0] = 255;
   //calling rgb Array to string fuction with rgb numbers as a argument 
-  rgbArrayToString(rgbNumbers) === rgbString;
+  filterFunction(rgbNumbers)
   //returning image values 
   image[i][t] = rgbArrayToString(rgbNumbers)
   }
@@ -52,7 +52,26 @@ function applyFilter(filterFunction){
 
 
 // TODO 7: Create the applyFilterNoBackground function
-
+function applyFilterNoBackground(filterFunction){
+  var backgroundColor = image[1][1]
+  for(var i = 0; i < image.length; i++){
+    var row = image[i];
+    for(var t = 0; t < row.length; t++){
+    
+    //takeing a part of image values 
+  var rgbString = image[i][t];
+  if (rgbString !== backgroundColor){
+var rgbNumbers = rgbStringToArray(rgbString);
+  // rgbNumbers[0] = 255;
+  //calling rgb Array to string fuction with rgb numbers as a argument 
+filterFunction(rgbNumbers)
+  //returning image values 
+  image[i][t] = rgbArrayToString(rgbNumbers)
+  }
+  
+  }
+}
+}
 
 // TODO 5: Create the keepInBounds function
 function keepInBounds(num){
@@ -68,15 +87,15 @@ console.log(keepInBounds(300));
 console.log(keepInBounds(127));
 // TODO 3: Create reddify function
 function reddify(red){
-  rgbNumbers[0] = 200;
+  red[0] = 200;
 }
 
 // TODO 6: Create more filter functions
 function decreaseBlue(blue){
   blue[2] = keepInBounds(blue[2] - 50);
 }
-function increaseGreenByBlue(Reen){
-  
+function increaseGreenByBlue(green){
+  green[1] = keepInBounds(green[1] + green[2]);
 }
 
 // CHALLENGE code goes below here
