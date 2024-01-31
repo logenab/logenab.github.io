@@ -91,14 +91,36 @@
     }
 
     // TODO 1: bounce the ball off the top
-
+     wallCollision();
+     
 
     // TODO 2: bounce the ball off the bottom
+       ball.top = ball.y - ball.radius;
+       ball.bottom = ball.y + ball.radius;
+
+       ball.right = ball.x + ball.radius;
+       ball.left = ball.x - ball.radius;
+
+       paddlePlayer.top = paddlePlayer.y; 
+      paddlePlayer.bottom = paddlePlayer.y + paddlePlayer.height;
+
+       paddlePlayer.right = paddlePlayer.x + paddlePlayer.width;
+       paddlePlayer.left = paddlePlayer.x; 
 
 
     // TODO 3: bounce the ball off each of the paddles
-
-
+  function wallCollision(){
+    if (ball.y > canvas.height){
+     ball.yVelocity = -5;
+    }else if (ball.x > canvas.width){
+      ball.xVelocity = -5;
+    }else if (ball.y < 0){
+      ball.yVelocity -= ball.y ;
+    }else if (ball.x < 0){
+      ball.xVelocity -= ball.x;
+    }
+  }
+ 
   }
 
   // helper function that wraps the draw.rect function for easy paddle making
