@@ -1,4 +1,4 @@
-(function(window, createjs, opspark, _) {
+(function (window, createjs, opspark, _) {
 
   // Variable declarations for libraries and the game engine
   const
@@ -91,37 +91,62 @@
     }
 
     // TODO 1: bounce the ball off the top
-     wallCollision();
-     
+    wallCollision();
+    resetBall();
+
 
     // TODO 2: bounce the ball off the bottom
-       ball.top = ball.y - ball.radius;
-       ball.bottom = ball.y + ball.radius;
-
-       ball.right = ball.x + ball.radius;
-       ball.left = ball.x - ball.radius;
-
-       paddlePlayer.top = paddlePlayer.y; 
-      paddlePlayer.bottom = paddlePlayer.y + paddlePlayer.height;
-
-       paddlePlayer.right = paddlePlayer.x + paddlePlayer.width;
-       paddlePlayer.left = paddlePlayer.x; 
-
-
-    // TODO 3: bounce the ball off each of the paddles
-  function wallCollision(){
-    if (ball.y > canvas.height){
-     ball.yVelocity = -5;
-    }else if (ball.x > canvas.width){
-      ball.xVelocity = -5;
-    }else if (ball.y < 0){
-      ball.yVelocity -= ball.y ;
-    }else if (ball.x < 0){
-      ball.xVelocity -= ball.x;
+    function wallCollision() {
+      if (ball.y > canvas.height) {
+        ball.yVelocity = -5;
+      } else if (ball.y < 0) {
+        ball.yVelocity -= ball.y;
+      }
     }
+
+    function resetBall() {
+      if (ball.x > canvas.width) {
+        ball.x = canvas.width / 2;
+      } else if (ball.x < 0) {
+        ball.x = canvas.width / 2;
+      }if (ball.y > canvas.height){
+        ball.y = canvas.height /2;
+      }else if (ball.y < 0){
+          ball.y = canvus,hight /2;
+      }
+    }
+    // TODO 3: bounce the ball off each of the paddles
+    ball.top = ball.y - ball.radius;
+    ball.bottom = ball.y + ball.radius;
+
+    ball.right = ball.x + ball.radius;
+    ball.left = ball.x - ball.radius;
+    paddled.top = paddled.y;
+    paddled.bottom = paddled.y + paddled.height;
+
+    paddled.right = paddled.x + paddled.width;
+    paddle.left = paddle.x;
+
+
+
+    const TopOverlap = ball.top < paddle.bottom;
+    const LeftOverlap = ball.left < paddle.right;
+
+    const RightOverlap = ball.right > paddle.right;
+    const BottomOverlap = ball.bottom > paddle.top;
+
+
+    if (TopOverlap && BottomOverlap && RightOverlap && LeftOverlap) {
+      ball.xVelocity *= -1;
+    }
+
+    if (topOverlap && bottomOverlap && rightOverlap && leftOverlap) {
+      ball.xVelocity *= -1;
+    }
+
   }
- 
-  }
+  // create a reset when the ball hit the wall
+
 
   // helper function that wraps the draw.rect function for easy paddle making
   function createPaddle({ width = 20, height = 100, x = 0, y = 0, color = '#CCC' } = {}) {
