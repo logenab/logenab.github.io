@@ -1,8 +1,6 @@
 (function (window, createjs, opspark, _) {
-
   // Variable declarations for libraries and the game engine
-  const
-    draw = opspark.draw, // library for drawing using createJS
+  const draw = opspark.draw, // library for drawing using createJS
     physikz = opspark.racket.physikz, // library for defining physics properties like velocity
     engine = opspark.V6().activateResize(), // game engine for actively rendering + running the game's mechanics
     canvas = engine.getCanvas(), // object for referencing the height / width of the window
@@ -11,10 +9,16 @@
   // load some sounds for the demo - play sounds using: createjs.Sound.play("wall");
   createjs.Sound.on("fileload", handleLoadComplete);
   createjs.Sound.alternateExtensions = ["mp3"];
-  createjs.Sound.registerSounds([{ src: "hit.ogg", id: "hit" }, { src: "wall.ogg", id: "wall" }], "assets/sounds/");
+  createjs.Sound.registerSounds(
+    [
+      { src: "hit.ogg", id: "hit" },
+      { src: "wall.ogg", id: "wall" },
+    ],
+    "assets/sounds/"
+  );
 
   function handleLoadComplete(event) {
-    console.log('sounds loaded');
+    console.log("sounds loaded");
   }
 
   engine
@@ -22,47 +26,44 @@
     .activateTick();
 
   // Variable declarations for the paddles and the ball which are drawn using createJS (see bower_components/opspark-draw/draw.js)
-  const
-    paddlePlayer = createPaddle(),
+  const paddlePlayer = createPaddle(),
     paddleCPU = createPaddle({ x: canvas.width - 20, y: canvas.height - 100 }),
-    ball = draw.circle(20, '#CCC');
+    ball = draw.circle(20, "#CCC");
 
-  // set initial properties for the paddles 
+  // set initial properties for the paddles
   paddlePlayer.yVelocity = 0;
   paddleCPU.yVelocity = 6;
 
   // set initial properties for the ball
   ball.x = canvas.width / 2;
   ball.y = canvas.height / 2;
-  ball.xVelocity = 5;
+  ball.xVelocity = -5;
   ball.yVelocity = 5;
 
   // add the paddles and the ball to the view
   stage.addChild(paddlePlayer, paddleCPU, ball);
 
-
-  document.addEventListener('keyup', onKeyUp);
-  document.addEventListener('keydown', onKeyDown);
+  document.addEventListener("keyup", onKeyUp);
+  document.addEventListener("keydown", onKeyDown);
 
   // when an Arrow key is pressed down, set the paddle in motion
   function onKeyDown(event) {
-    if (event.key === 'ArrowUp') {
+    if (event.key === "ArrowUp") {
       paddlePlayer.yVelocity = -5;
-    } else if (event.key === 'ArrowDown') {
+    } else if (event.key === "ArrowDown") {
       paddlePlayer.yVelocity = 5;
     }
   }
 
   // when either the Arrow Up or Arrow Down key are released, stop the paddle from moving
   function onKeyUp(event) {
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
       paddlePlayer.yVelocity = 0;
     }
   }
 
   function update(event) {
-    const
-      boundsCPU = paddleCPU.getBounds(),
+    const boundsCPU = paddleCPU.getBounds(),
       widthCPU = boundsCPU.width,
       heightCPU = boundsCPU.height,
       midCPU = heightCPU / 2,
@@ -84,77 +85,83 @@
     }
 
     // AI movement: CPU follows ball //
-    if ((paddleCPU.y + midCPU) < (ball.y - 14)) {
+    if (paddleCPU.y + midCPU < ball.y - 14) {
       paddleCPU.y += paddleCPU.yVelocity;
-    } else if ((paddleCPU.y + midCPU) > (ball.y + 14)) {
+    } else if (paddleCPU.y + midCPU > ball.y + 14) {
       paddleCPU.y -= paddleCPU.yVelocity;
     }
 
     // TODO 1: bounce the ball off the top
-    wallCollision();
+     wallCollision();
     resetBall();
-
 
     // TODO 2: bounce the ball off the bottom
     function wallCollision() {
       if (ball.y > canvas.height) {
-        ball.yVelocity = -5;
+        ball.yVelocity = -ball.yVelocity;
       } else if (ball.y < 0) {
-        ball.yVelocity -= ball.y;
+        ball.yVelocity = -ball.yVelocity;
       }
     }
 
-    function resetBall() {
-      if (ball.x > canvas.width) {
-        ball.x = canvas.width / 2;
-      } else if (ball.x < 0) {
-        ball.x = canvas.width / 2;
-      }if (ball.y > canvas.height){
-        ball.y = canvas.height /2;
-      }else if (ball.y < 0){
-          ball.y = canvus,hight /2;
-      }
-    }
+    
     // TODO 3: bounce the ball off each of the paddles
     ball.top = ball.y - ball.radius;
     ball.bottom = ball.y + ball.radius;
 
     ball.right = ball.x + ball.radius;
     ball.left = ball.x - ball.radius;
-    paddled.top = paddled.y;
-    paddled.bottom = paddled.y + paddled.height;
+    paddlePlayer.top = paddlePlayer.y;
+    paddlePlayer.bottom = paddlePlayer.y + paddlePlayer.height;
 
-    paddled.right = paddled.x + paddled.width;
-    paddle.left = paddle.x;
+    paddlePlayer.right = paddlePlayer.x + paddlePlayer.width;
+    paddlePlayer.left = paddlePlayer.x;
 
+    const TopOverlapCPU = ball.top < paddlePlayer.bottom;
+    const LeftOverlapCPU = ball.left < paddlePlayer.right;
 
+    const RightOverlapCPU = ball.right > paddlePlayer.right;
+    const BottomOverlapCPU = ball.bottom > paddlePlayer.top;
 
-    const TopOverlap = ball.top < paddle.bottom;
-    const LeftOverlap = ball.left < paddle.right;
+    paddleCPU.top = paddleCPU.y;
+    paddleCPU.bottom = paddleCPU.y + paddleCPU.height;
 
-    const RightOverlap = ball.right > paddle.right;
-    const BottomOverlap = ball.bottom > paddle.top;
+    paddleCPU.right = paddleCPU.x + paddleCPU.width;
+    paddleCPU.left = paddleCPU.x;
 
+    const TopOverlap = ball.top < paddleCPU.bottom;
+    const LeftOverlap = ball.left < paddleCPU.right;
+
+    const RightOverlap = ball.right > paddleCPU.right;
+    const BottomOverlap = ball.bottom > paddleCPU.top;
 
     if (TopOverlap && BottomOverlap && RightOverlap && LeftOverlap) {
       ball.xVelocity *= -1;
     }
 
-    if (topOverlap && bottomOverlap && rightOverlap && leftOverlap) {
-      ball.xVelocity *= -1;
-    }
-
+     if (TopOverlapCPU && BottomOverlapCPU && RightOverlapCPU && LeftOverlapCPU) {
+       ball.xVelocity *= -1;
+     }
   }
   // create a reset when the ball hit the wall
-
-
+  function resetBall() {
+    if (ball.x > canvas.width) {
+      ball.x = canvas.width / 2;
+    } else if (ball.x < 0) {
+      ball.x = canvas.width / 2;
+    }
+  }
   // helper function that wraps the draw.rect function for easy paddle making
-  function createPaddle({ width = 20, height = 100, x = 0, y = 0, color = '#CCC' } = {}) {
+  function createPaddle({
+    width = 20,
+    height = 100,
+    x = 0,
+    y = 0,
+    color = "#CCC",
+  } = {}) {
     const paddle = draw.rect(width, height, color);
     paddle.x = x;
     paddle.y = y;
     return paddle;
   }
-
-
-}(window, window.createjs, window.opspark, window._));
+})(window, window.createjs, window.opspark, window._);
