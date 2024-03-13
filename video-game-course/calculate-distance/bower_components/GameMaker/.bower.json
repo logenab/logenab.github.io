@@ -1,0 +1,13 @@
+{
+  "name": "GameMaker",
+  "_cacheHeaders": {
+    "ETag": "W/\"aeebe75e32ed362ca75861b7de92b1e8\"",
+    "Content-Type": "text/html; charset=utf-8"
+  },
+  "_release": "e-tag:W/\"aeebe75",
+  "main": "index",
+  "_source": "https://github.com/logenab/GameMaker",
+  "_target": "*",
+  "_originalSource": "https://github.com/logenab/GameMaker",
+  "_direct": true
+}
