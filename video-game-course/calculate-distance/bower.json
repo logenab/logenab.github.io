@@ -19,6 +19,6 @@
   "dependencies": {
     "EaselJS": "^1.0.2",
     "V6": "^0.0.2",
-    "GameMaker": "https://github.com/logenab/GameMaker"
+    "Divers": "https://github.com/logenab/GameMaker.git#^1.2.0"
   }
 }
