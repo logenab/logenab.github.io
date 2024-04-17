@@ -1,0 +1,23 @@
+{
+  "name": "Divers",
+  "main": "index.js",
+  "homepage": "https://github.com/logenab/GameMaker",
+  "description": "a game library",
+  "keywords": [
+    "Gamers"
+  ],
+  "authors": [
+    "Ayron"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

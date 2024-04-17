@@ -1,0 +1,34 @@
+{
+  "name": "Divers",
+  "main": "index.js",
+  "homepage": "https://github.com/logenab/GameMaker",
+  "description": "a game library",
+  "keywords": [
+    "Gamers"
+  ],
+  "authors": [
+    "Ayron"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "version": "0.1.5",
+  "_release": "0.1.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.5",
+    "commit": "22e8851569a0cdbf9621f577d7b15ac300bd262d"
+  },
+  "_source": "https://github.com/logenab/GameMaker.git",
+  "_target": "^0.1.5",
+  "_originalSource": "https://github.com/logenab/GameMaker.git",
+  "_direct": true
+}
