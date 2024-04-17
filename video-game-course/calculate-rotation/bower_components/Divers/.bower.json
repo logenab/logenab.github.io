@@ -20,15 +20,15 @@
   "dependencies": {
     "lodash": "^4.17.21"
   },
-  "version": "0.1.5",
-  "_release": "0.1.5",
+  "version": "0.1.6",
+  "_release": "0.1.6",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.5",
-    "commit": "22e8851569a0cdbf9621f577d7b15ac300bd262d"
+    "tag": "v0.1.6",
+    "commit": "2103a18a4d331f0be613c824748fc4ef7e0dba4b"
   },
   "_source": "https://github.com/logenab/GameMaker.git",
-  "_target": "^0.1.5",
+  "_target": "^0.1.6",
   "_originalSource": "https://github.com/logenab/GameMaker.git",
   "_direct": true
 }

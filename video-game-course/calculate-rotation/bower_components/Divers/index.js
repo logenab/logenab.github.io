@@ -5,7 +5,7 @@
       getAngleDegrees(pointA, pointB) {
         const distanceX = pointB.x - pointA.x;
         const distanceY = pointB.y - pointA.x;
-        const radians = Math.antan2(distanceY, distanceX);
+        const radians = Math.atan2(distanceY, distanceX);
         const degrees = (radians * 180) / Math.PI;
         return degrees;
       },

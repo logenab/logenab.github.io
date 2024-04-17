@@ -28,7 +28,7 @@
     distance.x = stage.mouseX;
     distance.y = stage.mouseY;
   console.log(divers)
-    const pos = divers.getAngleDegrees(distance, textfield);
+    const pos = divers.numz.getAngleDegrees(distance, textfield);
     console.log(typeof shapeUp);
       
  
