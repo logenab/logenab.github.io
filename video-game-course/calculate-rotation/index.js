@@ -27,10 +27,11 @@
 
     distance.x = stage.mouseX;
     distance.y = stage.mouseY;
-    console.log(divers);
-    const pos = divers.numz.getAngleDegrees(distance, textfield);
-    console.log(typeof shapeUp);
-    degress = ship.rotation;
+    console.log({ distance, ship });
+    const degrees = divers.numz.getAngleDegrees(distance, ship);
+    console.log(degrees);
+    ship.rotation = degrees;
+    console.log(ship.rotation);
 
     /*
      * TODO 7: Use your game lib's getAngleDegrees to get
@@ -49,7 +50,7 @@
      * with the current angle degrees. Degrees will be a value
      * between π and -π, or, 180 and -180.
      */
-    // assets.updateText(textfield, `Degrees: ${degrees.toFixed(3)}°`, canvas);
+    assets.updateText(textfield, `Degrees: ${degrees.toFixed(3)}°`, canvas);
   }
 
   engine.addTickHandlers(update).activateTick();
