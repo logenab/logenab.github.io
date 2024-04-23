@@ -23,17 +23,15 @@
   console.log(stage);
   stage.addChild(ship);
   function update(event) {
-  const distance ={}
+    const distance = {};
 
     distance.x = stage.mouseX;
     distance.y = stage.mouseY;
-  console.log(divers)
+    console.log(divers);
     const pos = divers.numz.getAngleDegrees(distance, textfield);
     console.log(typeof shapeUp);
-      
- 
-      
-    
+    degress = ship.rotation;
+
     /*
      * TODO 7: Use your game lib's getAngleDegrees to get
      * the degrees of the angle between the ship and the
