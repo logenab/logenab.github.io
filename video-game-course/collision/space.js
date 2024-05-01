@@ -1,4 +1,4 @@
-(function(window, opspark, racket) {
+(function(window, opspark, racket, divers) {
   /**
    * Creates and returns the space module. Listens for SPAWN 
    * events, adding any bodies in the event
@@ -47,8 +47,13 @@
           // compare all other bodies to bodyA, excluding bodyA: note j > -1 //
           hit: for (let j = i - 1; j > -1; j--) {
             const bodyB = active[j];
-            
+            console.log(bodyB)
             // TODO 1: Calculate hit test components
+            
+            var distanceX = bodyA.x - bodyB.x;
+            var distanceY = bodyA.y - bodyB.y;
+            var distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+            var minimumDistance = bodyA.radius + bodyB.radius;
             
             
               
@@ -78,4 +83,4 @@
       }
     };
   };
-}(window, window.opspark, window.opspark.racket));
+}(window, window.opspark, window.opspark.racket, window.gamz));
