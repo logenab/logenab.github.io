@@ -56,7 +56,7 @@
      */
     if (event.key === "ArrowUp") {
       ship.propulsion = 0.1;
-    } 
+    }
 
     /*
      * Left and right arrows cannot be pressed at the
@@ -75,8 +75,12 @@
   // listen for user releasing keys //
   document.onkeyup = function (event) {
     // TODO 13: How do we stop the application of forces?
+    if (event.key === "Arrow Left") {
+      ship.rotationalVelocity = 5;
+    } else if (event.key === "Arrow Right") {
+      ship.rotationalVelocity = -5;
+    }
   };
-  
 
   function reboundCircularAssetInArea(body, area) {
     const radius = body.radius;
@@ -101,8 +105,8 @@
       // we've struck the right side of the area //
       body.y = top + radius;
       body.velocityY *= -1;
-    } else if ( body.y + radius > bottom ) {
-       body.velocityY *= -1;
+    } else if (body.y + radius > bottom) {
+      body.velocityY *= -1;
       // we've struck the bottom of the area //
       // TODO 12: Code the reaction to hitting the bottom
     }
