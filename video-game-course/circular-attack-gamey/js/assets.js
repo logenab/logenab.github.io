@@ -60,14 +60,21 @@
       return {
         makeProjectile() {
           const projectile = _.extend(draw.circle(5, '#ff0000'), phyz.makeBody('projectile'));
-
+          const projectileShotGun = _.extend(draw.circle(5, 'ff0000'), phyz.makeBody('projectile'))
           // TODO : get from settings JSON //
           projectile.volatility = .125;
           projectile.velocityMax = 10;
           projectile.update = updateProjectile
+
+          projectileShotGun.Velocity = .150;
+          projectileShotGun.velocityMax = 10;
+          projectileShotGun.update = updateProjectile
           
           projectile.snapToPixel = true;
           projectile.cache(-projectile.radius, -projectile.radius, projectile.radius * 2, projectile.radius * 2);
+
+          projectileShotGun.snapToPixel = true;
+          projectileShotGun.cache(-projectileShotGun.radius, -projectileShotGun.radius, projectileShotGun.radius * 2, projectileShotGun.radius * 2);
 
           return projectile;
         },
@@ -119,7 +126,7 @@
            * render the ship's projectile.
            */
           ship.getProjectilePoint = getProjectilePoint;
-          
+    
           ship.explosion = fx
             .makeEmitter(5, 8, null, new Proton.Velocity(new Proton.Span(4, 2), new Proton.Span(0, 360), 'polar'), [new Proton.RandomDrift(5, 0, .35)]);
 
